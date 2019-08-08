@@ -1,0 +1,47 @@
+<% @module_name = "ಕ್ಷೇತ್ರ ನಿರ್ವಹಣೆ > 
+ಪಂಚಾಯತ್ ವಿವರಗಳು" %>
+<div class="content">
+  <div class="card">
+    <div class="card-header">
+      <h6 class="card-title">ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ</h6>
+      <hr />
+    </div>
+    <div class="card-body">
+      <table id="panchayat_<%= @panchayat.id %>" class="table table-striped table-hover">
+
+    <thead>
+      <th>ಮಾದರಿ</th>
+      <th>ಕೋಡ್</th>
+      <th>ಹೆಸರು<button class="btn btn-primary btn-xs float-right" onclick='newPlaceInZone("<%= @panchayat.id %>")'>+ಸೇರಿಸಿ</button></th>
+    </thead>
+    <tbody>
+      <% @panchayat.places.each do |p| %>
+      <tr id="place_<%= p.id %>">
+        <td>
+          <%= p.place_type %>
+        </td>
+        <td>
+          <%= p.code %>
+        </td>
+        <td>
+          <%= p.rgnl_name %>
+          <div data-place-id="<%= p.id %>" class="btn btn-xs btn-info float-right place-editable">
+            <%= icon('fas', 'edit') %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render "shared/modal" %>
+  <%= link_to "ಹಿಂದೆ", districts_path, class: "btn btn-info" %>
+    </div>
+  </div>
+</div>
+<hr />
+<script type="text/javascript">
+$(document).ready(function() {
+setEditListener("<%= entity_form_districts_path %>");
+})
+
+</script>

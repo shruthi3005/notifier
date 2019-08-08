@@ -1,0 +1,92 @@
+<% @module_name = "ಫಲಾನುಭವಿಗಳು > ವಿವರಗಳು" %>
+<div class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to 'ಎಡಿಟ್', edit_beneficiary_scheme_path(@beneficiary_scheme) %> |
+          <%= link_to 'ಹಿಂದೆ', beneficiary_schemes_path %>
+          <hr />
+        </div>
+        <div class="card-body">
+          <div class="container table-responsive">
+            <table class="table table-striped table-hover">
+              <tr>
+                <td><strong>ಸ್ಥಳ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.place.rgnl_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಯೋಜನೆ ವಿಧ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.scheme_type.rgnl_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ನಾಗರಿಕರ ಹೆಸರು:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.beneficiary_name %> :
+                  <%= @beneficiary_scheme.beneficiary_phone %>
+                </td>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಅರ್ಜಿ ದಿನಾಂಕ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.application_date %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಮಂಜೂರಾದ ಪರಿಹಾರ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.granted_relief %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಹಾಲಿ ಸ್ಥಿತಿ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.entity_status.rgnl_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಷರಾ:</strong></td>
+                <td>
+                  <%= @beneficiary_scheme.remarks %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ದಾಖಲೆ ಲಗತ್ತಿಸು:</strong></td>
+                <td>
+                  <div class="list-group">
+                    <% @beneficiary_scheme.stored_files.each do |d| %>
+                    <%= link_to d.document_url, class: "list-group-item" do %>
+                    <%= d.document.file.filename %> :
+                    <%= d.desc %>
+                    <% end %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="container mt-5">
+            <h6 class="alert alert-success"> ಪೋಟೋ ಲಗತ್ತಿಸು </h6>
+            <div class="row">
+              <% @beneficiary_scheme.stored_images.each do |i| %>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="card border" style="width: 20rem;">
+                  <%= image_tag i.image_url(:thumb), class: "card-img-top img-thumbnail", style: "padding:5px;" %>
+                  <div class="card-body">
+                    <%= i.desc %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

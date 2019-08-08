@@ -1,0 +1,106 @@
+<div class="sidebar" data-color="brown" data-active-color="danger">
+  <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+  <div class="logo">
+    <a href="/" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="<%= image_url("logo_small.png") %>">
+      </div>
+    </a>
+    <a href="/" class="simple-text logo-normal">
+      ಸುನಿಲ ನಾಯ್ಕ, <br />ಶಾಸಕರು 
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <% if user_signed_in? %>
+      <% if (current_user.admin? rescue false) %>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= citizens_path %>">
+          <i class="fa fa-user"></i>
+          <p>
+            <span class="d-md-block">ನೋಂದಾಯಿತ ನಾಗರಿಕರು</span>
+          </p>
+        </a>
+      </li>
+      <% end %>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= development_works_path %>">
+          <i class="fas fa-hard-hat"></i>
+          <p>
+            <span class="d-md-block">ಅಭಿವೃಧ್ಧಿ ಕಾಮಗಾರಿ</span>
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= beneficiary_schemes_path %>">
+          <i class="fas fa-wallet"></i>
+          <p>
+            <span class="d-md-block">ಫಲಾನುಭವಿಗಳು</span>
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= events_path %>">
+          <i class="fas fa-calendar-week"></i>
+          <p>
+            <span class="d-md-block">ದಿನಂಪ್ರತಿ ಕಾರ್ಯಕ್ರಮಗಳು</span>
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= feedbacks_path %>">
+          <i class="fas fa-comments"></i>
+          <p>
+            <span class="d-md-block">ದೂರು/ಬೇಡಿಕೆ/ಸಲಹೆ</span>
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn-magnify" href="<%= appointments_path %>">
+          <i class="fas fa-calendar-check"></i>
+          <p>
+            <span class="d-md-block">ಸಮಯಾವಕಾಶ ಕೋರಿಕೆ</span>
+          </p>
+        </a>
+      </li>
+      <li>
+        <a data-toggle="collapse" href="#tablesExamples" class="collapsed" aria-expanded="false">
+          <i class="fas fa-cogs"></i>
+          <p>
+            ಇತರೆ ಮೊಡ್ಯುಲಗಳು
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="tablesExamples" style="">
+          <ul class="nav">
+            <li>
+              <%= link_to "ಇಲಾಖೆ", departments_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "ಹಾಲಿ ಸ್ಥಿತಿ", entity_statuses_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "ವಿಧಗಳ ಮೋಡ್ಯುಲ್", valid_types_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "ಯೋಜನೆ ವಿಧ", scheme_types_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "ಉದ್ಯೋಗ/ಹುದ್ದೆ", positions_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "ಕ್ಷೇತ್ರ ನಿರ್ವಹಣೆ", districts_path, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <% end %>
+    </ul>
+    <div class="nav-item my-2 my-lg-0">
+      <%= link_to('ಲಾಗ್‌ ಔಟ', destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline btn-primary m-2") %>
+    </div>
+  </div>
+</div>

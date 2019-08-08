@@ -1,0 +1,178 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "bootstrap-datepicker3";
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  // padding-bottom: 5rem;
+  min-height: 100%;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* fix bootstrap-datepicker positional bug */
+.datepicker {
+  transform: translate(0, 3.1em);
+  z-index: 999 !important;
+}
+
+.datepicker-dropdown {
+  z-index: 999 !important;
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.intro-content {
+  text-align: center;
+  color: #fff;
+}
+
+.intro-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.display-table {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.card-trans {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bjp-bg {
+  background: asset_url("bjp_bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  @media (min-width: 575.98px) {
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+}
+
+@import 'paper-dashboard/variables';
+@import 'paper-dashboard/mixins';
+
+
+
+// Core CSS
+@import 'paper-dashboard/buttons';
+@import 'paper-dashboard/social-buttons';
+@import 'paper-dashboard/animated-buttons';
+@import 'paper-dashboard/inputs';
+@import 'paper-dashboard/typography';
+@import 'paper-dashboard/misc';
+@import 'paper-dashboard/misc-extend';
+@import 'paper-dashboard/navbar';
+@import 'paper-dashboard/dropdown';
+@import 'paper-dashboard/images';
+@import 'paper-dashboard/tables';
+@import 'paper-dashboard/footers';
+@import 'paper-dashboard/fixed-plugin';
+
+// components
+@import 'paper-dashboard/checkboxes-radio';
+@import 'paper-dashboard/progress';
+@import 'paper-dashboard/badges';
+@import 'paper-dashboard/pagination';
+@import 'paper-dashboard/info-areas';
+@import 'paper-dashboard/pills';
+@import 'paper-dashboard/tabs';
+@import 'paper-dashboard/popups';
+@import 'paper-dashboard/modals';
+@import 'paper-dashboard/carousel';
+@import 'paper-dashboard/sidebar-and-main-panel';
+@import 'paper-dashboard/timeline';
+
+
+
+// cards
+@import 'paper-dashboard/cards';
+@import "paper-dashboard/cards/card-chart";
+@import "paper-dashboard/cards/card-map";
+@import "paper-dashboard/cards/card-user";
+
+@import "paper-dashboard/cards/card-background";
+@import "paper-dashboard/cards/card-collapse";
+@import "paper-dashboard/cards/card-contributions";
+@import "paper-dashboard/cards/card-info-area";
+@import "paper-dashboard/cards/card-lock";
+@import "paper-dashboard/cards/card-pricing";
+@import "paper-dashboard/cards/card-profile";
+@import "paper-dashboard/cards/card-signup";
+@import "paper-dashboard/cards/card-stats-mini";
+@import "paper-dashboard/cards/card-stats";
+@import "paper-dashboard/cards/card-subcategories";
+@import "paper-dashboard/cards/card-testimonials";
+@import "paper-dashboard/cards/card-tasks";
+
+
+
+// example pages and sections
+@import 'paper-dashboard/example-pages';
+@import 'paper-dashboard/sections';
+
+
+@import 'paper-dashboard/responsive';
+@import 'paper-dashboard/media-queries';
+
+
+// // Canvas Styles
+@import 'landing-page/variables';
+@import 'landing-page/mixins';
+@import 'landing-page/header';
+@import 'landing-page/sliders';
+@import 'landing-page/dark';
+@import 'landing-page/content';
+// @import 'landing-page/extras';
+// @import 'landing-page/events';
+@import 'landing-page/footer';
+@import 'landing-page/helpers';
+@import 'landing-page/layouts';
+@import 'landing-page/mixins';
+// // @import 'landing-page/pagetitle';
+// // @import 'landing-page/portfolio';
+// @import 'landing-page/responsive';
+@import 'landing-page/shortcodes';
+@import 'landing-page/widgets';
+@import 'landing-page/onepage';
+

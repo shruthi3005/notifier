@@ -1,0 +1,78 @@
+<div id="wrapper" class="clearfix">
+  <header id="header" class="full-header border-full-header static-sticky">
+    <div id="header-wrap">
+      <div class="container clearfix">
+        <div id="primary-menu-trigger"><i class="fa fa-bars"></i></div>
+        <div id="logo">
+          <a href="/" class="standard-logo">
+            <%= image_tag("logo.png") %>
+          </a>
+        </div>
+        <nav id="primary-menu">
+          <ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+            <li>
+              <%= link_to('ಸೈನ್ ಇನ್‌', new_user_session_path, class: "nav-link text-warnning") %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="slider-element slider-parallax swiper_wrapper clearfix carousel slide">
+    <div class="slider-parallax-inner">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class='carousel-item active dark'>
+            <%= image_tag("bjp_bg.jpg") %>
+          </div>
+          <% (2..8).each do |i| %>
+          <div class="carousel-item dark">
+            <img src="<%= image_url("banner_%.4i.jpg"%i) %>">
+          </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev " href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next text-warning" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section id="content">
+    <div class="content-wrap nopadding">
+      <%= render partial: "shared/nav_links" %>
+      <div class="section dark nomargin mt-5 mb-5">
+        <div class="row align-items-stretch">
+          <div class="col-lg-8 col-md-8 offset-md-2">
+            <iframe style="height: 500px; width: 100%" src="https://www.youtube.com/embed/CZPvVz2ECX8?autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="footer" class="dark noborder">
+    <div id="copyrights">
+      <div class="container center clearfix">
+        <div class="float-left">©2019 ನಾಗರಿಕರ ಸಹಾಯವಾಣಿ ಭಟ್ಕಳ-ಹೊನ್ನಾವರ ವಿಧಾನಸಭಾಕ್ಷೇತ್ರ SunilNaik, MLA, Bhatkal </div>
+        <div class="float-right">
+          <a href="http://nighthack.in/" target="_blank">Powered by <strong class="text-uppercase">Nighthack Labs</strong></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    $('#primary-menu-trigger,#overlay-menu-close').off('click').on('click', function() {
+      if ($('#primary-menu').find('ul.mobile-primary-menu').length > 0) {
+        $('#primary-menu > ul.mobile-primary-menu, #primary-menu > div > ul.mobile-primary-menu').toggleClass('d-block');
+      } else {
+        $('#primary-menu > ul, #primary-menu > div > ul').toggleClass('d-block');
+      }
+      $('body').toggleClass("primary-menu-open");
+      return false;
+    });
+  </script>
+</div>

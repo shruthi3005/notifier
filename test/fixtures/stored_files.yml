@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  storage_type: MyString
+  storage_id: 1
+  desc: MyString
+  document: MyString
+
+two:
+  storage_type: MyString
+  storage_id: 1
+  desc: MyString
+  document: MyString

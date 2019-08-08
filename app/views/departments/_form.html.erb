@@ -1,0 +1,14 @@
+<%= simple_form_for(@department, remote: true) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="form-inputs">
+  <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+  <%= f.input :name, label: "ಇಂಗ್ಲಿಷ್ ಹೆಸರು" %>
+  <%= f.input :code, label: "ಕೋಡ್" %>
+  <%= f.input :email, label: "ಇ.ಮೇಲ್" %>
+  <%= f.input :phone , label: "ಪೋನ್‌ ನಂಬರ"%>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, class: "btn btn-primary" %>
+</div>
+<% end %>

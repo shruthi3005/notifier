@@ -1,0 +1,25 @@
+<div class="col-12">
+  <div class="row mb-4 alert alert-warning">
+    <div class="col-6 justify-content-center align-self-center">
+      <h6> ಪೋಟೋ ಲಗತ್ತಿಸು </h6>
+    </div>
+    <div class="col-6">
+      <%= f.link_to_add "+ ಫೋಟೋಗಳನ್ನು ಸೇರಿಸಿ", :stored_images, :data => { :target => "#imagesHolder" }, class: "btn btn-md btn-primary float-right m-0" %>
+    </div>
+  </div>
+  <div class="card-group" id="imagesHolder">
+    <%= f.simple_fields_for :stored_images do |g| %>
+    <div class="card border" style="width: 18rem;">
+      <%= image_tag g.object.image_url(:thumb), class: "card-img-top", style: "padding:5px;" if g.object.image.present? %>
+      <div class="card-body">
+        <%= g.input :image %>
+        <%= g.hidden_field :image_cache %>
+        <%= g.input :desc %>
+      </div>
+      <div class="card-footer">
+        <%= g.link_to_remove "ಡಿಲಿಟ್", class: "btn btn-outline-danger btn-sm" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,297 @@
+<% @module_name = "ಮತ ಕ್ಷೇತ್ರ ನಿರ್ವಹಣೆ ತಾಣ ಅಂಕಿ ಸಂಖ್ಯೆ" %>
+<div class="content">
+  <% if current_user.admin? %>
+  <h4> ನಿರ್ವಾಹಕರು </h4>
+  <hr />
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ತಾಲ್ಲೂಕ ಮತ್ತು ಮಂಡಲ</p>
+                <p class="card-title">
+                  <%= Taluk.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to districts_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಪಂಚಾಯತ/ಮಹಾ ಶಕ್ತಿ ಕೇಂದ್ರ</p>
+                <p class="card-title">
+                  <%= Panchayat.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to districts_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ</p>
+                <p class="card-title">
+                  <%= Place.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to districts_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಇಲಾಖೆ</p>
+                <p class="card-title">
+                  <%= Department.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to departments_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ದೂರು/ಬೇಡಿಕೆ/ಸಲಹೆ</p>
+                <p class="card-title">
+                  <%= Feedback.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to feedbacks_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಪದಾಧಿಕಾರ ಪಟ್ಟಿ</p>
+                <p class="card-title">
+                  <%= Position.internal.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to positions_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಯೋಜನೆಗಳು</p>
+                <p class="card-title">
+                  <%= SchemeType.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to scheme_types_path, class: "btn btn-primary" do %>ನಿರ್ವಹಿಸು
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <h4 class="mt-4"> ಪೋರ್ಟಲ ಅಂಕಿ ಸಂಖ್ಯೆ </h4>
+  <hr />
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಅಭಿವೃಧ್ಧಿ ಕಾಮಗಾರಿಗಳು</p>
+                <p class="card-title">
+                  <%= DevelopmentWork.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to development_works_path, class: "btn btn-primary float-right" do %>ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+            <%= icon("fas","chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ನೋಂದಾಯಿತ ನಾಗರಿಕರು</p>
+                <p class="card-title">
+                  <%= Citizen.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to citizens_path, class: "btn btn-primary float-right" do %>ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+            <%= icon("fas","chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಫಲಾನುಭವಿಗಳು</p>
+                <p class="card-title">
+                  <%= BeneficiaryScheme.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to beneficiary_schemes_path, class: "btn btn-primary float-right" do %>ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+            <%= icon("fas","chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ದಿನಂಪ್ರತಿ ಕಾರ್ಯಕ್ರಮಗಳು</p>
+                <p class="card-title">
+                  <%= Event.count %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to events_path, class: "btn btn-primary float-right" do %>ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+            <%= icon("fas","chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <% amount = DevelopmentWork.sum(:sanctioned_amount) %>
+        <% amount = '%.2f' % amount %>
+        <% amount = amount.insert(-7, ',') if amount.size > 6  %>
+        <% amount = amount.insert(-10, ',') if amount.size > 9  %>
+        <% amount = amount.insert(-13, ',') if amount.size > 12  %>
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="numbers">
+                <p class="card-category">ಕಾಮಗಾರಿಗಳ ಒಟ್ಟು ಮಂಜೂರಾದ ಮೊತ್ತ</p>
+                <p class="card-title">Rs. <%= amount %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <%= link_to development_works_path, class: "btn btn-primary float-right" do %>ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+            <%= icon("fas","chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

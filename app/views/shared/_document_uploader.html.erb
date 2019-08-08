@@ -1,0 +1,22 @@
+<div class="row mb-4 alert alert-warning">
+  <div class="col-6 justify-content-center align-self-center"><h6> ಸಂಭಂದಿಸಿದ ದಾಖಲೆ <%= f.object.class.to_s %> </h6></div>
+  <div class="col-6"><%= f.link_to_add "+ ದಾಖಲೆಗಳನ್ನು ಸೇರಿಸಿ", :stored_files, :data => { :target => "#documentsHolder" }, class: "btn btn-md btn-primary float-right m-0" %>
+  </div>
+</div>
+<div class="col-12">
+  <div class="card-group" id="documentsHolder">
+    <%= f.simple_fields_for :stored_files do |g| %>
+      <div class="card border" style="width: 18rem;">
+        <div class="card-body">
+          <%= link_to g.object.document.file.filename, g.object.document_url,  style: "padding:5px;" if g.object.document.present? %>
+          <%= g.input :document %>
+          <%= g.hidden_field :document_cache %>
+          <%= g.input :desc %>
+        </div>
+        <div class="card-footer">
+          <%= g.link_to_remove "ಡಿಲಿಟ್", class: "btn btn-outline-danger btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

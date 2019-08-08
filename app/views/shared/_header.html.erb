@@ -1,0 +1,82 @@
+<% if current_user %>
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <div class="navbar-minimize">
+        <button id="minimizeSidebar" class="btn btn-icon btn-round btn-primary">
+          <i class="fa fa-bars text-center visible-on-sidebar-mini"></i>
+          <i class="fa fa-bars text-center visible-on-sidebar-regular"></i>
+        </button>
+      </div>
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="navbar-brand text-white">
+        <%= title if defined?(title) %>
+      </div>
+    </div>
+  </div>
+</nav>
+<% end %>
+<script>
+$(document).ready(function() {
+    paperDashboard = {
+        misc: {
+            navbar_menu_visible: 0
+        },
+    };
+     $('html').removeClass('nav-open');
+      setTimeout(function() {
+          $('.navbar-toggle').removeClass('toggled');
+          $('#bodyClick').remove();
+      }, 550);
+    $('#minimizeSidebar').click(function() {
+        var $btn = $(this);
+        const $body = $('body');
+        $body.toggleClass('sidebar-mini');
+        // we simulate the window Resize so the charts will get updated in realtime.
+        var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+        }, 180);
+
+        // we stop the simulation of Window Resize after the animations are completed
+        setTimeout(function() {
+            clearInterval(simulateWindowResize);
+        }, 1000);
+    });
+    $('.navbar-toggle').click(function() {
+        $toggle = $(this);
+        if (paperDashboard.misc.navbar_menu_visible == 1) {
+            $('html').removeClass('nav-open');
+            paperDashboard.misc.navbar_menu_visible = 0;
+            setTimeout(function() {
+                $toggle.removeClass('toggled');
+                $('#bodyClick').remove();
+            }, 550);
+
+        } else {
+            setTimeout(function() {
+                $toggle.addClass('toggled');
+            }, 580);
+
+            div = '<div id="bodyClick"></div>';
+            $(div).appendTo('body').click(function() {
+                $('html').removeClass('nav-open');
+                paperDashboard.misc.navbar_menu_visible = 0;
+                setTimeout(function() {
+                    $toggle.removeClass('toggled');
+                    $('#bodyClick').remove();
+                }, 550);
+            });
+
+            $('html').addClass('nav-open');
+            paperDashboard.misc.navbar_menu_visible = 1;
+        }
+    });
+});
+
+</script>

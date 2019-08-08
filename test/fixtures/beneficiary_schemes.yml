@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  place: one
+  schemeType: MyString
+  user: one
+  application_date: 2019-04-10
+  granted_relief: MyText
+  status: MyString
+  remarks: MyText
+
+two:
+  place: two
+  schemeType: MyString
+  user: two
+  application_date: 2019-04-10
+  granted_relief: MyText
+  status: MyString
+  remarks: MyText

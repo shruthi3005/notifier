@@ -1,0 +1,77 @@
+<% @module_name = "ದಿನಂಪ್ರತಿ ಕಾರ್ಯಕ್ರಮಗಳು" %>
+<div class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to 'ಹೊಸ ಕಾರ್ಯಕ್ರಮ ಸೇರಿಸು', new_event_path, remote: true, class: "btn btn-primary" if current_user.admin? %>
+                <hr />
+        </div>
+        <div class="card-body">
+          <div class="mt-2">
+            <h6> ಹಿಂದಿನ ಕಾರ್ಯಕ್ರಮವನ್ನು ಹುಡುಕು</h6>
+            <%= form_tag({},{method: :get}) do %>
+            <div class="row">
+              <%= render "shared/date_selector" %>
+              <div class="col-md-4 col-sm-12">
+                <%= submit_tag :'ಹುಡುಕು', class: "btn btn-warning btn-sm" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col">
+              <center><h4><%= @events.count %> ದಿನಂಪ್ರತಿ ಕಾರ್ಯಕ್ರಮಗಳು</h4></center>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <% @events.group_by{|x| x.date}.each do |date, events| %>
+              <div class="alert alert-dark col-12 mt-4">
+                <h6>
+                  <%= date.strftime("%d %B, %Y - %A") %>
+                </h6>
+              </div>
+              <% events.each_slice(4) do |ev_set| %>
+              <div class="card-deck">
+                <% ev_set.each do |event| %>
+                <div class="card border">
+                  <div class="card-body">
+                    <div class="card-title"><b>
+                        <%= event.rgnl_name %></b></div>
+                    <%= event.start_time.strftime("%H:%M") %> -
+                    <%= event.end_time.strftime("%H:%M") %><br />
+                    <small><b>
+                        <%= event.venue %></b></small>
+                    <small>
+                      <%= event.details %></small>
+                    <% if current_user.admin? %>
+                    <div class="d-flex float-right" role="group" %>
+                      <%= link_to icon('fas', 'edit'), edit_event_path(event), remote: true, class: "btn btn-info btn-sm m-1" %>
+                      <%= link_to icon('fas', 'times'), event, method: :delete, remote: true, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-danger btn-sm m-1" %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+                <% end %>
+                <div class="col-md-12">
+                  <hr />
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+              <%= "<h4 class=\"col mx-auto text-center\">ದಿನಂಪ್ರತಿ ಕಾರ್ಯಕ್ರಮಗಳು ಇಲ್ಲ.. ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</h4>".html_safe if @events.blank? %>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer align-self-center">
+          <center>
+            <%= will_paginate @feedbacks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/modal" %>
+</div>

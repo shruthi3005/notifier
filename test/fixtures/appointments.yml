@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_name: MyString
+  venue: MyString
+  details: MyText
+  req_date: 2019-05-05
+  req_time: 2019-05-05 22:08:00
+  opt_date: 2019-05-05
+  opt_time: 2019-05-05 22:08:00
+  remarks: MyText
+
+two:
+  org_name: MyString
+  venue: MyString
+  details: MyText
+  req_date: 2019-05-05
+  req_time: 2019-05-05 22:08:00
+  opt_date: 2019-05-05
+  opt_time: 2019-05-05 22:08:00
+  remarks: MyText

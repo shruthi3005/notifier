@@ -1,0 +1,2 @@
+module EntityStatusesHelper
+end

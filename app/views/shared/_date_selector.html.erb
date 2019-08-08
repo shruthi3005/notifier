@@ -1,0 +1,10 @@
+<div class="col-md-3 col-sm-12 my-2">
+  <%= text_field_tag :start_date, params[:start_date], class: "input form-control", placeholder: "ಪ್ರಾರಂಭ ದಿನಾಂಕ" %>
+</div>
+<div class="col-md-3 col-sm-12 my-2">
+  <%= text_field_tag :end_date, params[:end_date], class: "input form-control", placeholder: "ಮುಕ್ತಾಯ ದಿನಾಂಕ " %>
+</div>
+<script type="text/javascript">
+  $('#start_date').datepicker(dateConfig);
+  $('#end_date').datepicker(dateConfig);
+</script>

@@ -1,0 +1,22 @@
+<%= simple_form_for(@notification, remote: true) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <div class="row">
+      <div class="col-4"><%= f.input :mail %></div>
+      <div class="col-4"><%= f.input :phone %></div>
+      <div class="col-4"><%= f.input :push, default: true %></div>
+    </div>
+    <%= f.input :expiry, as: :string %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $('#notification_expiry').datepicker(modalDateConfig);
+</script>

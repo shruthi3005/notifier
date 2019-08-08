@@ -1,0 +1,21 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<p>
+  <strong>ಇಲಾಖೆ:</strong>
+  <%= @department.name %>
+</p>
+<p>
+  <strong>ಕೋಡ್:</strong>
+  <%= @department.code %>
+</p>
+<p>
+  <strong>ಇ.ಮೇಲ್:</strong>
+  <%= @department.email %>
+</p>
+<p>
+  <strong>ಪೋನ್‌ ನಂಬರ:</strong>
+  <%= @department.phone %>
+</p>
+<%= link_to 'ಎಡಿಟ್', edit_department_path(@department) %> |
+<%= link_to 'ಹಿಂದೆ', departments_path %>

@@ -1,0 +1,14 @@
+<div class="col-md-3 col-sm-12 my-2">
+  <%= select_tag :panchayat_id, options_from_collection_for_select(Panchayat.external.order(:name), "id", "rgnl_name", params[:panchayat_id]), prompt: "ಪಂಚಾಯತವಾರು ಹುಡುಕು", class: "select form-control  w-100" %>
+</div>
+<div id="villageSelector" class="col-md-3 col-sm-12 my-2">
+  <%= render "shared/village_selector", locals: {villages: Place.where(panchayat_id: params[:panchayat_id]).order(:name)} %>
+</div>
+
+<script type="text/javascript">
+  // setPanchayatListener();
+  $("#panchayat_id").change(function(){
+    var panch_id = $(this).val();
+    $("#villageSelector").load("<%= village_select_districts_path %>?panchayat_id="+panch_id);
+  });
+</script>

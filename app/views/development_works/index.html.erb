@@ -1,0 +1,134 @@
+<% @module_name = "ಅಭಿವೃಧ್ಧಿ ಕಾಮಗಾರಿ" %>
+<div class="content">
+  <div class="card">
+    <div class="card-header">
+      <%= link_to 'ಹೊಸ ಕಾಮಗಾರಿ ಸೇರಿಸು', new_development_work_path, class: "btn btn-primary" if current_user.admin? %>
+      <hr />
+    </div>
+    <div class="card-body">
+      <div class="row mt-2">
+        <div class="container-fluid">
+          <%= form_tag({},{method: :get}) do %>
+            <div class="row">
+              <div class="col-md-3 col-sm-12 my-2 align-self-center">
+                <%= text_field_tag :search, params[:search], class: "input form-control", placeholder: "ಸ್ಥಳ/ಕಾಮಗಾರಿ ವಿಧದ ಮೇಲೆ ಹುಡುಕು" %>
+              </div>
+              <div class="col-md-3 col-sm-12 my-2">
+                <%= select_tag :status_id, options_from_collection_for_select(EntityStatus.where(entity_type: "DevelopmentWork"), "id", "rgnl_name",params[:status_id]), prompt: "ಹಾಲಿ ಸ್ಥಿತಿ ಮೇಲೆ ಕಾಮಗಾರಿ ಪರಿಷ್ಕರಿಸು", class: "select form-control w-100" %>
+              </div>
+              <%= render "shared/place_selector" %>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-12 my-2">
+                <%= select_tag :valid_type_id, options_from_collection_for_select(ValidType.where(entity_type: "DevelopmentWork"), "id", "rgnl_name",params[:valid_type_id]), prompt: "ಕಾಮಗಾರಿ ವಿಧದ ಮೇಲೆ ಹುಡುಕು", class: "select form-control w-100" %>
+              </div>
+              <div class="col-md-3 col-sm-12 my-2">
+                <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "rgnl_name",params[:department_id]), prompt: "ಇಲಾಖೆ", class: "select form-control w-100" %>
+              </div>
+              <div class="col-md-3 col-sm-12 my-2">
+                <%= select_tag :fy, options_for_select(2016..2025,params[:fy]), prompt: "ಹಣಕಾಸು ವರ್ಷ", class: "select form-control w-100" %>
+              </div>
+              <div class="col-md-3 col-sm-12 align-self-center">
+                <%= submit_tag :"ಹುಡುಕು", class: "btn btn-warning btn-sm" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          <div class="card card-stats">
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <div class="numbers">
+                    <p class="card-category">ಕಾಮಗಾರಿಗಳ ಒಟ್ಟು ಮಂಜೂರಾದ ಮೊತ್ತ</p>
+                    <p class="card-title">
+                      Rs. <%= ("%.2f" % @stats[:sanctioned]).reverse.gsub(/(?<=.{6})(\d\d?)/, ',\1').reverse %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ಕ್ರಮ ಸಂಖ್ಯೆ</th>
+              <th>ಸ್ಥಳ</th>
+              <th>ಕಾಮಗಾರಿ ವಿಧ</th>
+              <th>ಕಾಮಗಾರಿ ಟೈಟಲ್</th>
+              <th>ಇಲಾಖೆ</th>
+              <th>ಹಾಲಿ ಸ್ಥಿತಿ</th>
+              <th>ಅಂದಾಜು ಮೊತ್ತ</th>
+              <th>ಮಂಜೂರಾದ ಮೊತ್ತ </th>
+              <th>ಹಣಕಾಸು ವರ್ಷ</th>
+              <% if current_user.admin? %>
+                <th>ಕ್ರಮಗಳು</th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% page = params[:page].present? ? (params[:page].to_i rescue 1) : 1 %>
+            <% @development_works.each_with_index do |development_work, ix| %>
+              <tr>
+                <td>
+                  <%= (page -1) * 10 + (ix+1) %>
+                </td>
+                <td colspan="<%= current_user.admin? ? 9 : 8 %>">
+                  <%= development_work.desc %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <%= development_work.place.panch_name %>
+                </td>
+                <td>
+                  <%= development_work.valid_type.rgnl_name rescue "NA" %>
+                </td>
+                <td>
+                  <%= development_work.name %>
+                </td>
+                <td>
+                  <%= development_work.department.rgnl_name %>
+                </td>
+                <td>
+                  <%= development_work.entity_status.rgnl_name %>
+                </td>
+                <td>
+                   <%= development_work.estimated_amount %><br />
+                </td>
+                <td>
+                 <%= development_work.sanctioned_amount %>
+                </td>
+                <td>
+                 <%= development_work.fy %>
+                </td>
+                <% if current_user.admin? %>
+                <td>
+                  <div class="d-flex" role="group">
+                    <%= link_to 'ಹೆಚ್ಚಿನ ವಿವರ', development_work, class: "btn btn-sm btn-info m-2" %>
+                    <%= link_to 'ಎಡಿಟ್', edit_development_work_path(development_work), class: "btn btn-sm btn-primary m-2" %>
+                    <%= link_to 'ಡಿಲಿಟ್', development_work, method: :delete, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-sm btn-danger m-2" %>
+                  </div>
+                </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer align-self-center">
+      <center>
+        <%= will_paginate @development_works, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </center>
+    </div>
+  </div>
+</div>

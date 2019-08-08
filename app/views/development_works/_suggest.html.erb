@@ -1,0 +1,10 @@
+<input id="searchText" name="search" value="" />
+<div id="resultHolder"></div>
+<script>
+$("#searchText").change(function() {
+  text = $(this).val();
+  $.get("<%= places_suggest_path %>?search=" + text, function(res) {
+    console.log(res);
+  })
+})
+</script>

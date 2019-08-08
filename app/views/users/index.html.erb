@@ -1,0 +1,29 @@
+<h2> Users </h2>
+<%= link_to 'New User', new_user_path, remote: true, class: "btn btn-primary" %>
+<hr/>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>ಹೆಸರು</th>
+      <th>ಇ.ಮೇಲ್</th>
+      <th>ಪೋನ್‌ ನಂಬರ</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= link_to u.name, u %></td>
+          <td><%= u.email %></td>
+          <td><%= u.phone %></td>
+          <td>
+            <%= link_to edit_user_path(u), remote: true, class: "btn btn-info btn-sm" do %>
+              <%= icon('fas', 'edit') %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= render "shared/modal" %>

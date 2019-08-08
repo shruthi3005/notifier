@@ -1,0 +1,114 @@
+<% @module_name = "ಅಭಿವೃಧ್ಧಿ ಕಾಮಗಾರಿ > ವಿವರಗಳು" %>
+<div class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to 'ಎಡಿಟ್', edit_development_work_path(@development_work), class: "btn btn-sm btn-info" %> |
+          <%= link_to 'ಹಿಂದೆ', development_works_path, class: "btn btn-info btn-sm" %>
+          <hr />
+        </div>
+        <div class="card-body">
+          <div class="container table-responsive">
+            <table class="table table-striped table-hover">
+              <tr>
+                <td><strong>ಸ್ಥಳ:</strong></td>
+                <td>
+                  <%= @development_work.place.panch_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಕಾಮಗಾರಿ ವಿಧ:</strong></td>
+                <td>
+                  <%= @development_work.valid_type.rgnl_name rescue "NA" %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಕಾಮಗಾರಿ ಟೈಟಲ್:</strong></td>
+                <td>
+                  <%= @development_work.name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ವಿವರಣೆ:</strong></td>
+                <td>
+                  <%= @development_work.desc %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಅಂದಾಜು ಮೊತ್ತ:</strong></td>
+                <td>
+                  <%= @development_work.estimated_amount %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಮಂಜೂರಾದ ಮೊತ್ತ:</strong></td>
+                <td>
+                  <%= @development_work.sanctioned_amount %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಇಲಾಖೆ:</strong></td>
+                <td>
+                  <%= @development_work.department.rgnl_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಅಡಿಗಲ್ಲು ದಿನಾಂಕ:</strong></td>
+                <td>
+                  <%= @development_work.foundation_date %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಉದ್ಘಾಟನೆ ದಿನಾಂಕ:</strong></td>
+                <td>
+                  <%= @development_work.inaugration_date %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಹಾಲಿ ಸ್ಥಿತಿ:</strong></td>
+                <td>
+                  <%= @development_work.entity_status.rgnl_name %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ಷರಾ:</strong></td>
+                <td>
+                  <%= @development_work.remarks %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ದಾಖಲೆ ಲಗತ್ತಿಸು:</strong></td>
+                <td>
+                  <div class="list-group">
+                    <% @development_work.stored_files.each do |d| %>
+                    <%= link_to d.document_url, class: "list-group-item" do %>
+                    <%= d.document.file.filename %> :
+                    <%= d.desc %>
+                    <% end %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="container mt-5">
+            <h6 class="alert alert-success"> ಪೋಟೋ ಲಗತ್ತಿಸು </h6>
+            <div class="row">
+              <% @development_work.stored_images.each do |i| %>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="card border" style="width: 20rem;">
+                  <%= image_tag i.image_url(:thumb), class: "card-img-top img-thumbnail", style: "padding:5px;" %>
+                  <div class="card-body">
+                    <%= i.desc %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<%= simple_nested_form_for(@district) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="form-inputs">
+  <%= f.input :name, label: "ಜಿಲ್ಲೆಯ ಹೆಸರು" %>
+  <%= f.input :code, label: "ಕೋಡ್" %>
+  <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+  <div class="row">
+    <div class="col-4">
+      <h4> ಈ ಜಿಲ್ಲೆಗೆ ತಾಲ್ಲೂಕುಗಳು </h4>
+    </div>
+    <div class="col">
+      <%= f.link_to_add "+ ತಾಲ್ಲೂಕ ಸೇರಿಸಿ ", :taluks, :data => { :target => "#talukHolder" }, class: "btn btn-md btn-primary" %>
+    </div>
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+  <div class="list-group" id="talukHolder">
+    <%= f.simple_fields_for :taluks do |g| %>
+    <div class="list-group-item">
+      <%= g.link_to_remove "x", class: "btn btn-outline-danger mb-1 float-right btn-sm" %>
+      <%= g.input :name, label: "ತಾಲ್ಲೂಕ" %>
+      <%= g.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (g.object.regional_name_name rescue "") } %>
+      <%= g.input :code %>
+      <div class="row">
+        <div class="col-4">
+          <h4> ಈ ತಾಲ್ಲೂಕಿಗೆ ಪಂಚಾಯಿತಿಗಳು </h4>
+        </div>
+        <div class="col">
+          <%= g.link_to_add "+ ಪಂಚಾಯತ್ ಸೇರಿಸಿ", :panchayats, :data => { :target => "#panchayatHolder" }, class: "btn btn-md btn-primary" %>
+        </div>
+        <div class="col-12">
+          <hr />
+        </div>
+      </div>
+      <div class="list-group" id="panchayatHolder">
+        <%= g.simple_fields_for :panchayats do |h| %>
+        <div class="list-group-item">
+          <%= h.link_to_remove "x", class: "btn btn-outline-danger mb-1 float-right btn-sm" %>
+          <%= h.input :name, label: "ಪಂಚಾಯತ್ ಹೆಸರು" %>
+          <%= h.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (h.object.regional_name_name rescue "") } %>
+          <%= h.input :code %>
+          <div class="row">
+            <div class="col-4">
+              <h4> ಈ ಪಂಚಾಯಿತಿಯ ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ </h4>
+            </div>
+            <div class="col">
+              <%= h.link_to_add "+ ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ ಸೇರಿಸಿ", :places, :data => { :target => "#placesHolder" }, class: "btn btn-md btn-primary" %>
+            </div>
+            <div class="col-12">
+              <hr />
+            </div>
+          </div>
+          <div class="row" id="placesHolder">
+            <%= h.fields_for :places do |p| %>
+            <div class="col card card-body">
+              <%= p.input :place_type, collection: Place::VALID_TYPES.values, placeholder: "ಪ್ರದೇಶದ ಪ್ರಕಾರ", label:"ಪ್ರದೇಶದ ಪ್ರಕಾರ" %>
+              <%= p.input :name, label: false, placeholder: "ಪ್ರದೇಶ ಹೆಸರು", label:"ಪ್ರದೇಶ ಹೆಸರು" %>
+              <%= p.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: false, input_html: { value: (p.object.regional_name_name rescue "") } %>
+              <%= p.input :code, label: false, placeholder: "ಪ್ರದೇಶ ಕೋಡ್", label:"ಪ್ರದೇಶ ಕೋಡ್" %>
+              <%= p.link_to_remove "ಡಿಲಿಟ್", class: "btn btn-outline-danger mb-1 float-right btn-sm" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<hr />
+<div class="form-actions">
+  <%= f.button :submit, class: "btn btn-success" %>
+</div>
+<% end %>

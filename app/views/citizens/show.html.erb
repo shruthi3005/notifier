@@ -1,0 +1,7 @@
+<h4> Citizen detail Page :
+  <%= @citizen.name %>
+</h4>
+<%= link_to edit_citizen_path(@citizen), remote: true, class: "btn btn-info btn-sm" do %>
+Edit my details
+<%= icon('fas', 'edit') %>
+<% end %>

@@ -1,0 +1,17 @@
+<p>
+  <strong>ಯೋಜನೆ ವಿಧ:</strong>
+  <%= @scheme_type.entity_type %>
+</p>
+
+<p>
+  <strong>ಹೆಸರು:</strong>
+  <%= @scheme_type.name %>
+</p>
+
+<p>
+  <strong>ಕೋಡ್:</strong>
+  <%= @scheme_type.code %>
+</p>
+
+<%= link_to 'ಎಡಿಟ್', edit_scheme_type_path(@scheme_type) %> |
+<%= link_to 'ಹಿಂದೆ', scheme_types_path %>

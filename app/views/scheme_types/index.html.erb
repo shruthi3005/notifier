@@ -1,0 +1,26 @@
+<% @module_name = " ಯೋಜನೆ ವಿಧ" %>
+  <div class="content">
+    <%= link_to 'ಹೊಸ ಯೋಜನೆ', new_scheme_type_path, remote: true, class: "btn btn-primary" %>
+    <hr />
+    <div class="col-sm">
+      <div class="list-group">
+        <% @scheme_types.group_by{|x| x.sub_type}.each do |e_type, entities| %>
+        <div class="list-group-item disabled">
+          <h4>
+            <%= e_type %>
+          </h4>
+        </div>
+        <% entities.each do |scheme_type| %>
+        <div class="list-group-item list-group-item-action">
+          <%= scheme_type.rgnl_name %>
+          <div class="d-flex float-right" role="group" %>
+            <%= link_to icon('fas', 'edit'), edit_scheme_type_path(scheme_type), remote: true, class: "btn btn-info btn-sm m-1" %>
+            <%= link_to icon('fas', 'times'), scheme_type, method: :delete, remote: true, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-danger btn-sm m-1" %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <%= render "shared/modal" %>
+  </div>

@@ -1,0 +1,13 @@
+<%= label_tag :place, "ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ*", required: true %>
+<div class="form-row">
+  <div class="col-11">
+    <%= text_field_tag :palce, (f.object.place.panch_name rescue ""), id: :place_search, autocomplete: :off, placeholder: "ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಲು ಪ್ರಾರಂಭಿಸಿ ", class: "input form-control", required: true %>
+  </div>
+  <div class="col-1 m-0">
+    <div id="editPlaceSelect" class="btn btn-info btn-sm"><%= icon('fas', 'edit') %></div>
+  </div>
+</div>
+<%= f.input :place_id, as: :hidden %>
+<div class="col">
+  <div id="popPlaceContent" class="list-group"></div>
+</div>

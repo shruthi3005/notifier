@@ -1,0 +1,37 @@
+<% @module_name = "ಕ್ಷೇತ್ರ ನಿರ್ವಹಣೆ > ಜಿಲ್ಲಾ ವಿವರಗಳು" %>
+<div class="content">
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">  <h6>District Details <%= @district.code %> : <%= @district.rgnl_name %></h6>      <hr /></div>
+
+<button class="btn btn-primary" onclick='newTalukInZone("<%= @district.id %>")'>+
+<%= @district.name %> ಗೆ ಮತ್ತೊಂದು ತಾಲ್ಲೂಕು ಸೇರಿಸಿ </button>
+  </div>
+  <div class="card-body">
+    <% @district.taluks.each do |t| %>
+  <div id="taluk_<%= t.id %>" class="container">
+    <h4>
+      <div data-taluk-id="<%= t.id %>" class="btn btn-sm btn-info taluk-editable"><%= icon('fas', 'edit') %></div>
+      Taluk - <%= t.code %> : <%= t.rgnl_name %>
+    </h4>
+    <button class="btn btn-secondary btn-sm" onclick='newPanchInZone("<%= t.id %>")'>+<%= t.name %> 
+ಗೆ ಪಂಚಾಯತ್ ಸೇರಿಸಿ</button>
+    <div class="row"><hr/></div>
+    <%= render partial: "taluk_details", locals: {taluk: t} %>
+  </div>
+<% end %>
+
+<hr/>
+<%= link_to 'ಎಡಿಟ್', edit_district_path(@district), class: "btn btn-sm btn-primary" %> |
+<%= link_to 'ಹಿಂದೆ', districts_path, class: "btn btn-md btn-secondary" %>
+
+<%= render "shared/modal" %>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    setEditListener("<%= entity_form_districts_path %>");
+  })
+</script>

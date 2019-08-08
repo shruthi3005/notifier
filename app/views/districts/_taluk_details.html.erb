@@ -1,0 +1,54 @@
+<div class="content">
+  <% taluk.panchayats.each do |panch| %>
+  <h5>
+    <div data-panchayat-id="<%= panch.id %>" class="btn btn-sm btn-info panchayat-editable">
+      <%= icon('fas', 'edit') %>
+    </div>
+    ಪಂಚಾಯತ್ ವಿವರಗಳು
+    <%= panch.code %>:
+    <%= link_to panch.rgnl_name, panchayat_details_district_path(panch) %>
+    <% if panch.internal %>
+    <label class="label label-danger">For Party Work</label>
+    <% end %>
+  </h5>
+  <table id="panchayat_<%= panch.id %>" class="table table-striped table-hover">
+    <thead>
+      <th colspan="3">
+        <center>
+          <h4>ಗ್ರಾಮ/ವಾರ್ಡ/ಮಜಿರೆ</h4>
+        </center>
+      </th>
+    </thead>
+    <thead>
+      <th>ಮಾದರಿ</th>
+      <th>ಕೋಡ್</th>
+      <th>ಹೆಸರು<button class="btn btn-primary btn-xs float-right" onclick='newPlaceInZone("<%= panch.id %>")'>+Add New</button></th>
+    </thead>
+    <tbody>
+      <% panch.places.each do |p| %>
+      <tr id="place_<%= p.id %>">
+        <td>
+          <%= p.place_type %>
+        </td>
+        <td>
+          <%= p.code %>
+        </td>
+        <td>
+          <%= p.rgnl_name %>
+          <div data-place-id="<%= p.id %>" class="btn btn-xs btn-info float-right place-editable">
+            <%= icon('fas', 'edit') %>
+          </div>
+          <% if p.internal %>
+          <label class="label label-danger">For Party Work</label>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <th colspan="3"><button class="btn btn-primary btn-xs" onclick='newPlaceInZone("<%= panch.id %>")'>+Add New</button></th>
+    </tfoot>
+  </table>
+  <hr />
+  <% end %>
+</div>

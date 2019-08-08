@@ -1,0 +1,19 @@
+<%= label_tag :citizen %>
+<div class="form-row">
+  <div class="col-11">
+    <%= text_field_tag :user, (f.object.user.name rescue ""), id: :user_search, autocomplete: :off, placeholder: "ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಲು ಪ್ರಾರಂಭಿಸಿ ", class: "input form-control", required: true %>
+  </div>
+  <div class="col-1">
+    <div id="editUserSelect" class="btn btn-info"><%= icon('fas', 'edit') %></div>
+  </div>
+</div>
+<%= f.input :user_id, as: :hidden %>
+<div class="col">
+  <div id="popUserContent" class="list-group"></div>
+</div>
+
+<script type="text/javascript">
+  function addUser(){
+    window.open("<%= users_path %>")
+  }
+</script>

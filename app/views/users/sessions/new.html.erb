@@ -1,0 +1,86 @@
+<div class="login-page">
+  <div class="wrapper wrapper-full-page ">
+    <div class="full-page section-image" filter-color="black" data-image="http://www.pngnames.com/files/4/BJP-Logo-PNG-Clipart.png">
+      <header id="header" class="full-header border-full-header static-sticky">
+        <div id="header-wrap">
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="fa fa-bars"></i></div>
+            <div id="logo">
+              <a href="/" class="standard-logo">
+                <%= image_tag("logo.png") %>
+              </a>
+            </div>
+            <nav id="primary-menu">
+              <ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+                <li>
+                  <%= link_to('ಸೈನ್ ಇನ್‌', new_user_session_path, class: "nav-link text-warnning") %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="container">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form_signin") do |f| %>
+            <div class="card card-lock text-center">
+              <div class="card-header ">
+                <%= image_tag("logo.png") %>
+                <h5 class="header text-center">ಲಾಗಿನ್</h5>
+              </div>
+              <div class="card-body">
+                <div class="col">
+                  <%= f.label :"ಮೊಬೈಲ್ ಸಂಖ್ಯೆ", class: "w-100 text-left" %><br />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text pt-0 pb-0">+91-</span>
+                    </div>
+                    <%= f.telephone_field :phone, autofocus: true, autocomplete: "phone", pattern: '\d{10}', placeholder: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ", class: "input form-control" %>
+                  </div>
+                </div>
+                <div class="col mt-2">
+                  <%= f.label :"ಪಾಸ್ವರ್ಡ್", class: "w-100 text-left" %><br />
+                  <%= f.password_field :password, placeholder: "ಪಾಸ್ವರ್ಡ್", autocomplete: "current-password", class: "input form-control" %>
+                </div>
+                <% if devise_mapping.rememberable? %>
+                <div class="col mt-2">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+                <% end %>
+                <div class="col mt-2">
+                  <%= f.submit "ಲಾಗಿನ್ ಆಗಿ", class: "btn btn-warning btn-round btn-block mb-3" %>
+                </div>
+                <%= render "users/shared/links" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= render "shared/footer" %>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  $page = $('.full-page');
+  image_src = $page.data('image');
+  if (image_src !== undefined) {
+    image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>';
+    $page.append(image_container);
+  }
+
+  $('#primary-menu-trigger,#overlay-menu-close').off('click').on('click', function() {
+    if ($('#primary-menu').find('ul.mobile-primary-menu').length > 0) {
+      $('#primary-menu > ul.mobile-primary-menu, #primary-menu > div > ul.mobile-primary-menu').toggleClass('d-block');
+    } else {
+      $('#primary-menu > ul, #primary-menu > div > ul').toggleClass('d-block');
+    }
+    $('body').toggleClass("primary-menu-open");
+    return false;
+  });
+});
+
+</script>

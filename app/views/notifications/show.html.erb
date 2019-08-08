@@ -1,0 +1,28 @@
+<p>
+  <strong>ಟೈಟಲ್:</strong>
+  <%= @notification.title %>
+</p>
+
+<p>
+  <strong>ವಿಷಯ:</strong>
+  <%= @notification.content %>
+</p>
+<h4> Forms of delivery</h4>
+<p>
+  <strong>ಇ.ಮೇಲ್:</strong>
+  <%= @notification.mail %>
+</p>
+
+<p>
+  <strong>ಪೋನ ನಂಬರ:</strong>
+  <%= @notification.phone %>
+</p>
+
+<p>
+  <strong>ಆಮಂತ್ರಣ ಕಳುಹಿಸು:</strong>
+  <%= @notification.push %>
+</p>
+
+
+<%= link_to 'ಎಡಿಟ್', edit_notification_path(@notification) %> |
+<%= link_to 'ಹಿಂದೆ', notifications_path %>

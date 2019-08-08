@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  place: one
+  name: MyString
+  desc: 
+  estimated_amount: 1.5
+  sanctioned_amount: 1.5
+  department: one
+  foundation_date: 2019-04-10
+  inaugration_date: 2019-04-10
+  status: MyString
+  remarks: 
+
+two:
+  place: two
+  name: MyString
+  desc: 
+  estimated_amount: 1.5
+  sanctioned_amount: 1.5
+  department: two
+  foundation_date: 2019-04-10
+  inaugration_date: 2019-04-10
+  status: MyString
+  remarks: 

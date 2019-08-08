@@ -1,0 +1,29 @@
+<div class="container">
+  <%= simple_nested_form_for(@beneficiary_scheme) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs">
+    <%= render "shared/places_suggest", f: f %>
+    <%= f.input :beneficiary_phone, as: :integer, label: 'ಫಲಾನುಭವಿಗಳ ಪೋನ್‌ ನಂಬರ' %>
+    <%= f.input :beneficiary_name, label: 'ಫಲಾನುಭವಿಗಳ ಹೆಸರು' %>
+    <%= f.association :scheme_type, label_method: :rgnl_name, label: 'ಯೋಜನೆ ವಿಧ' %>
+    <%= f.input :application_date, label: 'ಅರ್ಜಿ ದಿನಾಂಕ' %>
+    <%= f.input :granted_relief, label: 'ಮಂಜೂರಾದ ಪರಿಹಾರ' %>
+    <%= f.association :entity_status, label: "ಹಾಲಿ ಸ್ಥಿತಿ", collection: EntityStatus.where(entity_type: f.object.class.to_s), label_method: :rgnl_name %>
+    <%= f.input :remarks, label: 'ಷರಾ'%>
+  </div>
+  <hr />
+  <%= render "shared/document_uploader", f: f %>
+  <hr />
+  <%= render "shared/image_uploader", f: f %>
+  <hr />
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <% end %>
+  <script type="text/javascript">
+  // Set autosuggest on this module
+  setPlaceSuggester("<%= places_suggest_path %>", "beneficiary_scheme");
+
+  </script>
+</div>

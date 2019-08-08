@@ -1,0 +1,12 @@
+<h4><%= @user.name %></h4>
+<% 
+  qrcode = RQRCode::QRCode.new(user_url(@user)) 
+  svg = qrcode.as_svg(offset: 0, color: '000', 
+                    shape_rendering: 'crispEdges', 
+                    module_size: 11)
+%>
+
+<%= raw svg %>
+
+<br/><br/>
+<%= link_to "ಹಿಂದೆ", users_path %>

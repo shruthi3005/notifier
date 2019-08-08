@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  panchayat: one
+  name: MyString
+  code: MyString
+  place_type: MyString
+
+two:
+  panchayat: two
+  name: MyString
+  code: MyString
+  place_type: MyString

@@ -1,0 +1,11 @@
+<div class="list-group">
+  <% @notifications.each do |n| %>
+    <div  class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= n.title %></h5>
+        <small><%= time_ago_in_words(n.created_at) %> ago</small>
+      </div>
+      <p class="mb-1"><%= n.content %></p>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+<%= simple_nested_form_for(@feedback, remote: true, authenticity_token: true ) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors.full_messages.to_sentence if f.object.errors.present? %>
+<div class="form-inputs">
+  <%= render "shared/places_suggest", f: f %>
+  <%= f.input :feedback_type, collection: Feedback::VALID_TYPES.values, label: "ದೂರು/ಬೇಡಿಕೆ/ಸಲಹೆ ವಿಧ" %>
+  <%= f.association :department, label_method: :rgnl_name, label: "ಇಲಾಖೆ"%>
+  <%= f.input :name, label: "ಟೈಟಲ್" %>
+  <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+  <%= f.input :details, label: "ಹೆಚ್ಚಿನ ವಿವರ" %>
+  <%= f.input :action_taken, label: "ತೆಗೆದುಕೊಂಡ ಕ್ರಮ" %>
+  <%= f.association :entity_status, label: "ಹಾಲಿ ಸ್ಥಿತಿ", collection: EntityStatus.where(entity_type: f.object.class.to_s), label_method: :rgnl_name %>
+  <hr />
+  <%= render "shared/document_uploader", f: f %>
+  <hr />
+  <%= render "shared/image_uploader", f: f %>
+</div>
+<hr />
+<div class="form-actions">
+  <%= f.button :submit, class: "btn btn-primary" %>
+</div>
+<% end %>
+<script type="text/javascript">
+// Set autosuggest on this module
+setPlaceSuggester("<%= places_suggest_path %>", "feedback");
+
+</script>

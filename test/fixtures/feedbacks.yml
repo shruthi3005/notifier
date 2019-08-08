@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  place: one
+  feedback_type: MyString
+  department: one
+  title: MyString
+  details: MyText
+  action_taken: MyText
+  entity_status: one
+
+two:
+  place: two
+  feedback_type: MyString
+  department: two
+  title: MyString
+  details: MyText
+  action_taken: MyText
+  entity_status: two

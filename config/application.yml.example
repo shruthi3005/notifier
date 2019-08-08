@@ -1,0 +1,8 @@
+SECRET_KEY_BASE: 
+APP_TOKEN: 
+db_username: root
+db_password: 
+aws_id: 
+aws_key: 
+aws_bucket: zonemanager
+aws_zone: ap-south-1

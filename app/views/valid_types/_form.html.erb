@@ -1,0 +1,15 @@
+<%= simple_form_for(@valid_type) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :entity_type, collection: EntityStatus::VALID_TYPES.values, label: "ಹಾಲಿ ಸ್ಥಿತಿಗಳು" %>
+    <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+    <%= f.input :name, label: "ಹೆಸರು" %>
+    <%= f.input :code, label: "ಕೋಡ್" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

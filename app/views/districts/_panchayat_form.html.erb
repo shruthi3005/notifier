@@ -1,0 +1,10 @@
+<% panchayat_path = @panchayat.new_record? ? create_entity_districts_path : update_entity_district_path(@panchayat) %>
+<%= simple_form_for(@panchayat, url: panchayat_path) do |f| %>
+<%= hidden_field_tag :entity_type, @panchayat.class.to_s %>
+<%= f.input :name, required: true %>
+<%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+<%= f.input :code, required: true %>
+<%= f.input :internal, label: "For Party work only?" %>
+<%= f.input :taluk_id, as: :hidden if @panchayat.new_record? %>
+<%= f.button :submit, class: "btn btn-success btn-block" %>
+<% end %>

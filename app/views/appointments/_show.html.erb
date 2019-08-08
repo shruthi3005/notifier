@@ -1,0 +1,42 @@
+<div class="container table-responsive">
+  <table class="table table-striped table-hover">
+    <% @appointment.attributes.each do |k,v| %>
+    <% unless ["id", "user_id", "entity_status_id"].include?(k) %>
+    <tr>
+      <td><strong>
+          <%= k.humanize %></strong></td>
+      <td>
+        <%= v %>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+    <tr>
+      <td><strong>ಸಮಯಾವಕಾಶ ಕೋರಿದವರ ಹೆಸರು:</strong></td>
+      <td>
+        <%= @appointment.user.name_phone rescue "NA" %>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>ಹಾಲಿ ಸ್ಥಿತಿ:</strong></td>
+      <td>
+        <%= @appointment.entity_status.rgnl_name rescue "NA" %>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>ದಾಖಲೆ ಲಗತ್ತಿಸು:</strong></td>
+      <td>
+        <div class="list-group">
+          <% @appointment.stored_files.each do |d| %>
+          <%= link_to d.document_url, class: "list-group-item btn btn-block btn-outline-secondary" do %>
+          <%= d.document.file.filename %> :
+          <%= d.desc %>
+          <% end %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<%= link_to 'ಎಡಿಟ್', edit_appointment_path(@appointment) %> |
+<%= link_to 'ಹಿಂದೆ', feedbacks_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ಹೆಸರು:</strong>
+  <%= @position.rgnl_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @position.pos_type %>
+</p>
+
+<%= link_to 'ಎಡಿಟ್', edit_position_path(@position) %> |
+<%= link_to 'ಹಿಂದೆ', positions_path %>

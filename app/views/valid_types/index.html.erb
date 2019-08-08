@@ -1,0 +1,37 @@
+<% @module_name = "ವಿಧಗಳ ಮೋಡ್ಯುಲ್" %>
+
+  <div class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <%= link_to 'ಹೊಸ ಹಾಲಿ ಸ್ಥಿತಿ ಸೇರಿಸು', new_valid_type_path, remote: true, class: "btn btn-primary" %>
+                  <hr />
+          </div>
+          <div class="card-body">
+            <div class="col-sm">
+              <div class="list-group">
+                <% @valid_types.group_by{|x| x.entity_type}.each do |e_type, entities| %>
+                <div class="list-group-item disabled">
+                  <h4>
+                    <%= e_type %>
+                  </h4>
+                </div>
+                <% entities.each do |valid_type| %>
+                <div class="list-group-item list-group-item-action">
+                  <%= valid_type.rgnl_name %>
+                  <div class="d-flex float-right" role="group" %>
+                    <%= link_to icon('fas', 'edit'), edit_valid_type_path(valid_type), remote: true, class: "btn btn-info btn-sm m-1" %>
+                    <%= link_to icon('fas', 'times'), valid_type, method: :delete, remote: true, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-danger btn-sm m-1" %>
+                  </div>
+                </div>
+                <% end %>
+                <% end %>
+              </div>
+            </div>
+            <%= render "shared/modal" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

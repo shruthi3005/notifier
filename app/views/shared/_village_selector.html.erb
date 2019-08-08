@@ -1,0 +1,1 @@
+<%= select_tag :place_id, options_from_collection_for_select(Place.where(panchayat_id: params[:panchayat_id]).order(:name), "id", "rgnl_name", params[:place_id]), prompt: "ಗ್ರಾಮವಾರು ಹುಡುಕು", class: "select form-control w-100" %>

@@ -1,0 +1,28 @@
+<%= simple_form_for(@citizen, remote: true) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors.full_messages.to_sentence if f.object.errors.present? %>
+<div class="form-inputs">
+  <% positions = current_user.admin? ? Position.all : Position.external %>
+  <%= render "shared/places_suggest", f: f %>
+  <%= f.association :position, label: "ಉದ್ಯೋಗ/ಹುದ್ದೆ", label_method: :rgnl_name, collection: positions %>
+  <%= f.input :name, label: "ಹೆಸರು" %>
+  <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+  <%= f.input :phone, label: "ಪೋನ ನಂಬರ"  %>
+  <%= f.input :gender, collection: ["ಗಂಡು", "ಹೆಣ್ಣು", "ಇತರೆ"], label: "ಲಿಂಗ" %>
+  <%= f.input :email, label: "ಇ.ಮೇಲ್" %>
+  <%= f.input :dob, as: :string, label: "ಹುಟ್ಟಿದ ದಿನಾಂಕ" %>
+  <%= f.input :address, as: :text, label: "ವಿಳಾಸ" %>
+  <%= f.input :pincode, as: :integer, label: "ಪಿನ್‌ ಕೋಡ್" %>
+  <%= f.input :addl_details, label: "ಹೆಚ್ಚುವರಿ ವಿವರ" %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, class: "btn btn-primary" %>
+</div>
+<% end %>
+<script type="text/javascript">
+// Set autosuggest on this module
+setPlaceSuggester("<%= places_suggest_path %>", "citizen");
+
+$('#citizen_dob').datepicker(modalDobConfig);
+
+</script>

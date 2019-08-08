@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sunil Naik, MLA</title>
+  <%= csrf_meta_tags %>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta name="description" content="Information and Programs from Sunil Naik, MLA, Bhatkal">
+  <meta property="og:image" content="<%= image_url("logo_small.png") %>">
+  <meta name="author" content="Vishrut Jha">
+  <link rel="shortcut icon" type="image/png" href="<%= image_url("favicon.ico") %>">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="bg-light stretched no-transition sidebar-mini" data-loader="11" data-loader-color="#543456">
+  <% unless Rails.env.development? %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139949108-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-139949108-1');
+
+  </script>
+  <% end %>
+    <% if current_user %>
+      <div class="wrapper">
+        <%= render "shared/sidebar" %>
+        <div class="main-panel">
+          <%= render "shared/header", title: (current_module rescue "Home") %>
+          <%= yield %>
+        </div>
+        <%= render "shared/notify_modal" %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<% @module_name = "ಉದ್ಯೋಗ/ಹುದ್ದೆ" %>
+  <div class="content">
+    <%= link_to 'ಹೊಸ ಉದ್ಯೋಗ/ಹುದ್ದೆ ಸೇರಿಸು', new_position_path, remote: true, class: "btn btn-primary" %>
+    <hr />
+    <div class="col-sm">
+      <div class="list-group">
+        <% @positions.group_by{|x| x.pos_type}.each do |type, entities| %>
+        <div class="list-group-item disabled">
+          <h4>
+            <%= type %>
+          </h4>
+        </div>
+        <% entities.each do |position| %>
+        <div class="list-group-item list-group-item-action">
+          <%= position.rgnl_name %>
+          <div class="d-flex float-right" role="group" %>
+            <%= link_to icon('fas', 'edit'), edit_position_path(position), remote: true, class: "btn btn-info btn-sm m-1" %>
+            <%= link_to icon('fas', 'times'), position, method: :delete, remote: true, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-danger btn-sm m-1" %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <%= render "shared/modal" %>
+  </div>

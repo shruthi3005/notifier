@@ -1,0 +1,50 @@
+<div class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <%= link_to 'New Notification', new_notification_path, id: :new_dept, remote: true, class: "btn btn-primary" if current_user.admin? %>
+          <%= link_to 'Notify Specific User', specific_notification_form_notifications_path, class: "btn btn-primary" %>
+          <hr/>
+        </div>
+        <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>ಶೀರ್ಷಿಕೆ</th>
+                <th>ವಿಷಯ</th>
+                <th>Modes</th>
+                <th>ಕ್ರಮಗಳು</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <td><%= notification.title %></td>
+                  <td><%= notification.content %></td>
+                  <td>
+                    <ul>
+                      Mail <%= '<i class="fa fa-check" aria-hidden="true"></i>'.html_safe if notification.mail %><br/>
+                      Phone<%= '<i class="fa fa-check" aria-hidden="true"></i>'.html_safe if notification.phone %> <br/>
+                      Push <%= '<i class="fa fa-check" aria-hidden="true"></i>'.html_safe if notification.push %><br/>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="d-flex float-right" role="group" %>
+                      <%= link_to icon('fas', 'edit'), edit_notification_path(notification), remote: true, class: "btn btn-info btn-sm m-1" %>
+                      <%= link_to icon('fas', 'times'), notification, method: :delete, remote: true, data: { confirm: 'ನೀವು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ??' }, class: "btn btn-danger btn-sm m-1" %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <%= render "shared/modal" %>
+      </div>
+    </div>
+  </div>
+</div>

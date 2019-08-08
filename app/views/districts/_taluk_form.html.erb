@@ -1,0 +1,10 @@
+<% taluk_path = @taluk.new_record? ? create_entity_districts_path : update_entity_district_path(@taluk) %>
+<%= simple_form_for(@taluk, url: taluk_path) do |f| %>
+  <%= hidden_field_tag :entity_type, @taluk.class.to_s %>
+  <%= f.input :name, required: true %>
+  <%= f.input :regional_name_value, placeholder: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", label: "ಕನ್ನಡದಲ್ಲಿ ಹೆಸರು", input_html: { value: (f.object.regional_name_name rescue "") } %>
+  <%= f.input :code, required: true %>
+  <%= f.input :internal, label: "For Party work only?" %>
+  <%= f.input :district_id, as: :hidden if @taluk.new_record? %>
+  <%= f.button :submit, class: "btn btn-success btn-block" %>
+<% end %>

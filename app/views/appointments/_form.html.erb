@@ -1,0 +1,25 @@
+<div class="container">
+  <%= simple_nested_form_for(@appointment, remote: true, authenticity_token: true ) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors.full_messages.to_sentence if f.object.errors.present? %>
+  <div class="form-inputs">
+    <%= f.input :event_name, label: "ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಸಮಾಯವಕಾಶದ ಹೆಸರು" %>
+    <%= f.input :org_name, label: "ಸಂಘ ಸಂಸ್ಥೆ/ವ್ಯಕ್ತಿಯ ಹೆಸರು" %>
+    <%= f.input :venue, label: "ಕಾರ್ಯಕ್ರಮ ನಡೆಯುವ ಸ್ಥಳ" %>
+    <%= f.input :details, label: "ಈವೆಂಟ್ ವಿವರಗಳು" %>
+    <%= f.input :req_date, label: "ಕೋರಿಕೆಯ ದಿನಾಂಕ" %>
+    <%= f.input :req_time, label: "ಕೋರಿಕೆಯ ಸಮಯ" %>
+    <%= f.input :opt_date, label: "ಕೋರಿಕೆಯ ದಿನಾಂಕ" %>
+    <%= f.input :opt_time, label: "ಕೋರಿಕೆಯ ಸಮಯ" %>
+    <% if current_user.admin? %>
+    <%= f.association :entity_status, label: "ಹಾಲಿ ಸ್ಥಿತಿ", collection: EntityStatus.where(entity_type: f.object.class.to_s), label_method: :rgnl_name %>
+    <%= f.input :remarks, label: 'ಷರಾ'%>
+    <% end %>
+    <%= render "shared/document_uploader", f: f %>
+  </div>
+  <hr />
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>

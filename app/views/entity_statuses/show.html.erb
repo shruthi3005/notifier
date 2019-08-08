@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ಸ್ಥಿತಿಯ ವಿಧ:</strong>
+  <%= @entity_status.entity_type %>
+</p>
+
+<p>
+  <strong>ಹೆಸರು:</strong>
+  <%= @entity_status.name %>
+</p>
+
+<p>
+  <strong>ಕೋಡ್:</strong>
+  <%= @entity_status.code %>
+</p>
+
+<%= link_to 'ಎಡಿಟ್', edit_entity_status_path(@entity_status) %> |
+<%= link_to 'ಹಿಂದೆ', entity_statuses_path %>
